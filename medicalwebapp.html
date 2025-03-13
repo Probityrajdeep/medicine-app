@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .welcome-image {
+            width: 150px; /* Increased width */
+            height: 150px; /* Increased height */
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: hsl(283, 84%, 53%);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: hsl(308, 67%, 35%);
+        }
+        .button {
+            display: inline-block;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: hsl(283, 84%, 53%);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .button:hover {
+            background-color: hsl(308, 67%, 35%);
+        }
+        .outer-box {
+        padding: 20px;
+        border: 3px solid hsl(283, 84%, 53%); /* Stylish border */
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        background-color: #ffffff;
+    }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <img src="https://i.pinimg.com/736x/bf/4f/55/bf4f550091c19b78bb59477f3881be34.jpg" alt="Doctor Image" class="welcome-image">
+        <h1>Welcome</h1>
+        <form id="appointmentForm">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+            <select id="doctor" name="doctor" required>
+                <option value="" disabled selected>Select Doctor</option>
+                <option value="dr_smith">Dr. Rajdeep</option>
+                <option value="dr_jones">Dr. Jagjeet</option>
+                <option value="dr_brown">Dr. Swayambhu</option>
+            </select>
+            <input type="date" id="date" name="date" required>
+            <a href="main.html" class="button">Go to Medical Page</a>
+        </form>
+        <div id="confirmationMessage" style="display:none; margin-top: 20px; color: green;">
+            Appointment booked successfully!
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch('/submit-appointment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(message => {
+                document.getElementById('confirmationMessage').style.display = 'block';
+                document.getElementById('confirmationMessage').textContent = message;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

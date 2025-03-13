@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-xl font-bold mb-4 text-center">Welcome to AI Chatbot</h1>
+        <div id="chatbox" class="h-64 overflow-y-auto p-3 border rounded mb-3 bg-gray-50"></div>
+        <input id="userInput" type="text" placeholder="Type a message..." class="w-full p-2 border rounded"/>
+        <button onclick="sendMessage()" class="mt-2 w-full bg-blue-500 text-white p-2 rounded">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let input = document.getElementById("userInput").value;
+            if (input.trim() === "") return;
+            
+            let chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML += `<div class='text-right text-blue-600 my-1'>${input}</div>`;
+            document.getElementById("userInput").value = "";
+            
+            fetch('/chatbot', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: input })
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatbox.innerHTML += `<div class='text-left text-gray-600 my-1'>${data.reply}</div>`;
+                chatbox.scrollTop = chatbox.scrollHeight;
+            });
+        }
+    </script>
+</body>
+</html>

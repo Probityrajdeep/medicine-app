@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Doctor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label, select, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        select, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="doctorDetails.html" method="get">
+        <h1>Select a Doctor to See Details</h1>
+        <label for="doctor">Choose a doctor:</label>
+        <select name="doctor" id="doctor">
+            <option value="rajdeep">Rajdeep</option>
+            <option value="jagjeet">Jagjeet</option>
+            <option value="swayambhu">Swayambhu</option>
+        </select>
+        <button type="submit">See Details</button>
+    </form>
+</body>
+</html>
