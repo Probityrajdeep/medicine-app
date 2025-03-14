@@ -38,7 +38,7 @@
     </p>
     <ol>
       <li>Clone the repository:
-        <pre>git clone https://github.com/dc-exe/Health_and_Doctor_Appointment.git</pre>
+        <pre>git clone https://github.com/Probityrajdeep/medicine-app</pre>
       </li>
       <li>Open the project folder in your favorite code editor (such as VS Code or Sublime Text).</li>
       <li>If the project uses a build system, follow the instructions provided in the repository's documentation.</li>
