@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor's Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #eef1f5;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #0077b6;
+      color: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .icon-button {
+      background-color: #0096c7;
+      border: none;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .icon-button:hover {
+      background-color: #005478;
+    }
+
+    /* Main Container */
+    .container {
+      display: flex;
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .main-content {
+      flex: 3;
+      background-color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-content h2 {
+      margin-bottom: 0.5rem;
+      color: #0077b6;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #0077b6;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+
+    /* Notification Panel */
+    .notification-panel {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 300px;
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+    }
+
+    /* Prescription Image */
+    .prescription {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .prescription img {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+
+    .modal-content, #caption {
+      animation-name: zoom;
+      animation-duration: 0.6s;
+    }
+
+    @keyframes zoom {
+      from { transform: scale(0) }
+      to { transform: scale(1) }
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .close:hover, .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #caption {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+      text-align: center;
+      color: #ccc;
+      padding: 10px 0;
+      height: 150px;
+    }
+
+    @media only screen and (max-width: 700px) {
+      .modal-content {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <button class="icon-button" onclick="window.location.href='personal.html'">Personal</button>
+    </div>
+    <div class="header-title">Doctor's Dashboard</div>
+    <div>
+      <button class="icon-button" onclick="window.location.href='Doctor.html'">Doctor</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="main-content">
+      <h2>Disease Description</h2>
+      <p>Malaria</p>
+
+      <h2>Medicine</h2>
+      <p>Chloroquine, Artemisinin-based combination therapies (ACT)</p>
+
+      <h2>Dosage</h2>
+      <p>500mg of Chloroquine daily for 3 days, followed by ACT</p>
+
+      <h2>Note</h2>
+      <p>Avoid taking Chloroquine if pregnant or allergic to the drug.</p>
+
+      <div class="prescription">
+        <h2>Prescription</h2>
+        <img id="prescriptionImg" src="https://www.researchgate.net/publication/345830022/figure/fig4/AS:957640029003789@1605330583881/Sample-prescription-used-as-input-to-the-GUI-developed-in-the-present-work.png" height="100" width="100" border="1">
+      </div>
+
+      <h2>Previous Doctor</h2>
+      <p>This prescription is of Dr. Rajdeep</p>
+
+      <div class="prescription">
+        <h3>Prescription for Hypertension</h3>
+        <img id="prescriptionImg2" src="https://i.imghippo.com/files/tgo3557hbM.jpg" alt="Prescription for Hypertension">
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Doctor's Dashboard | All Rights Reserved
+  </footer>
+
+  <div class="notification-panel" id="notificationPanel">
+    <p id="notificationMessage">This is a notification message.</p>
+  </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+
+  <script>
+    function showNotification(message) {
+      const panel = document.getElementById('notificationPanel');
+      const messageElement = document.getElementById('notificationMessage');
+      messageElement.textContent = message;
+      panel.style.display = 'block';
+      setTimeout(() => {
+        panel.style.display = 'none';
+      }, 3000);
+    }
+
+    // Example usage
+    showNotification('Welcome to the Doctor\'s Dashboard!');
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("prescriptionImg");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function() {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+
+    // Get the second image for additional prescription
+    var img2 = document.getElementById("prescriptionImg2");
+    img2.onclick = function() {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+  </script>
+</body>
+</html>

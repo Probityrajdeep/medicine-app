@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Appointment</title>
+    <script src="https://cdn.jsdelivr.net/npm/@aptos-labs/aptos@1.0.0/dist/aptos.js"></script> <!-- Include Aptos SDK -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -65,15 +66,14 @@
         }
         .outer-box {
         padding: 20px;
-        border: 3px solid hsl(283, 84%, 53%); /* Stylish border */
+        border: 3px solid hsl(283, 84%, 53%);
         border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         background-color: #ffffff;
     }
     </style>
 </head>
 <body>
-    
     <div class="container">
         <img src="https://i.pinimg.com/736x/bf/4f/55/bf4f550091c19b78bb59477f3881be34.jpg" alt="Doctor Image" class="welcome-image">
         <h1>Welcome</h1>
@@ -93,27 +93,64 @@
         <div id="confirmationMessage" style="display:none; margin-top: 20px; color: green;">
             Appointment booked successfully!
         </div>
+        <button id="connectWalletButton">Connect Aptos Wallet</button>
     </div>
 
     <script>
+        // Create Aptos Client and Wallet functions
+        let aptosClient;
+        let aptosWallet;
+
+        // Connect Aptos Wallet
+        document.getElementById("connectWalletButton").addEventListener("click", async () => {
+            if (window.aptos) {
+                try {
+                    // Initialize Aptos client and wallet
+                    aptosClient = new aptos.AptosClient("https://fullnode.devnet.aptoslabs.com/v1");
+                    aptosWallet = window.aptos;
+                    const account = await aptosWallet.connect();
+                    alert("Wallet connected: " + account.address);
+                } catch (err) {
+                    alert("Error connecting to Aptos Wallet: " + err.message);
+                }
+            } else {
+                alert("Please install an Aptos Wallet extension.");
+            }
+        });
+
+        // Handle the form submission and send transaction to Aptos blockchain
         document.getElementById('appointmentForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            
+            if (!aptosWallet) {
+                alert("Please connect your Aptos Wallet first.");
+                return;
+            }
+
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
+            
+            // Prepare the payload for the Aptos transaction (you can adjust based on your smart contract)
+            const payload = {
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                doctor: data.doctor,
+                date: data.date
+            };
 
-            fetch('/submit-appointment', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.text())
-            .then(message => {
+            // Send the data to the Aptos blockchain (example for transaction submission)
+            aptosClient.submitTransaction({
+                sender: aptosWallet.account(),
+                payload: payload,
+                // Additional transaction parameters, like type and parameters, would be here
+            }).then(response => {
                 document.getElementById('confirmationMessage').style.display = 'block';
-                document.getElementById('confirmationMessage').textContent = message;
-            })
-            .catch(error => console.error('Error:', error));
+                document.getElementById('confirmationMessage').textContent = "Appointment booked on the blockchain!";
+            }).catch(error => {
+                console.error('Transaction error:', error);
+                alert("Error booking appointment on blockchain.");
+            });
         });
     </script>
 </body>
