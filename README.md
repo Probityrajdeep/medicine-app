@@ -25,10 +25,10 @@
   
   <div class="section" id="screenshots">
     <h2>📸 Screenshots</h2>
-    <p>Here are some screenshots of the website interface:</p>
-    <img src="./Screenshot1.png" alt="Doctor's Dashboard Screenshot 1">
-    <img src="./Screenshot2.png" alt="Doctor's Dashboard Screenshot 2">
-    <img src="./Screenshot3.png" alt="Doctor's Dashboard Screenshot 3">
+<a href="https://ibb.co/wZhPcgnS"><img src="https://i.ibb.co/BH2Qn3hy/Screenshot-1.png" alt="Screenshot-1" border="0"></a>
+<a href="https://ibb.co/nsBvL498"><img src="https://i.ibb.co/Gv9L5Gy3/Screenshot-2.png" alt="Screenshot-2" border="0"></a>
+<a href="https://ibb.co/1fCgWRpf"><img src="https://i.ibb.co/GvZ6SC1v/Screenshot-3.png" alt="Screenshot-3" border="0"></a>
+<a href="https://ibb.co/nsBvL498"><img src="https://i.ibb.co/Gv9L5Gy3/Screenshot-2.png" alt="Screenshot-2" border="0" /></a>
   </div>
   
   <div class="section" id="installation">
