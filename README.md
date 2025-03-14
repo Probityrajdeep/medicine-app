@@ -3,69 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doctor's Dashboard Website - README</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f5f7fa;
-      color: #333;
-      margin: 0 auto;
-      max-width: 900px;
-      padding: 2rem;
-      line-height: 1.6;
-    }
-    h1, h2, h3 {
-      color: #0077b6;
-      margin-bottom: 0.5rem;
-    }
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-    p {
-      margin-bottom: 1rem;
-    }
-    a {
-      color: #0096c7;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .section {
-      background-color: #fff;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    pre {
-      background-color: #eef1f5;
-      padding: 1rem;
-      overflow-x: auto;
-      border-radius: 5px;
-    }
-    .footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid #ddd;
-    }
-    img {
-      display: block;
-      max-width: 100%;
-      margin: 1rem auto;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
+
   <h1>🏥 Doctor's Dashboard Website</h1>
   
   <div class="section" id="overview">
